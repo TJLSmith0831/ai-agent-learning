@@ -6,24 +6,14 @@ Features rich text formatting, progress bars, and interactive prompts.
 """
 
 import os
-import sys
 from pathlib import Path
-from typing import Optional, List
-import time
+from typing import Optional
 
 from rich.console import Console
-from rich.progress import (
-    Progress,
-    SpinnerColumn,
-    TextColumn,
-    BarColumn,
-    TaskProgressColumn,
-)
 from rich.prompt import Prompt, Confirm
 from rich.panel import Panel
 from rich.syntax import Syntax
 from rich.table import Table
-from rich import print as rprint
 
 from simple_agent import DocumentationAgent
 from enums import LLMClient, DocumentationFormat
@@ -32,7 +22,7 @@ from enums import LLMClient, DocumentationFormat
 class InteractiveCLI:
     """
     Interactive CLI with rich formatting and user experience.
-    
+
     Provides a modern command-line interface with colors, progress bars,
     and interactive prompts for the AI documentation generator.
     """
@@ -257,7 +247,7 @@ class InteractiveCLI:
     def handle_batch_mode(self):
         """
         Handle batch processing mode for multiple files.
-        
+
         :returns: None
         :rtype: None
         """
@@ -281,7 +271,7 @@ class InteractiveCLI:
     def run(self):
         """
         Execute the main interactive CLI workflow.
-        
+
         :returns: None
         :rtype: None
         """
@@ -315,7 +305,7 @@ class InteractiveCLI:
 def main():
     """
     Entry point for the interactive CLI application.
-    
+
     :returns: None
     :rtype: None
     """

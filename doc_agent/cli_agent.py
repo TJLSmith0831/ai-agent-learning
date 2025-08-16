@@ -197,7 +197,7 @@ def save_output(content, output_path) -> None:
 def main() -> None:
     """
     Main CLI entry point for the application.
-    
+
     :returns: None
     :rtype: None
     """
