@@ -4,11 +4,31 @@
 
 This guide covers CLI development patterns for the AI documentation agent.
 
+## 📁 Current Repository Structure
+
+```
+ai-agent-learning/
+├── CLAUDE.md                 # Project instructions for Claude Code
+├── README.md                 # Project overview
+├── requirements.txt          # Python dependencies
+└── doc_agent/               # CLI implementation directory
+    ├── CLI_GUIDE.md         # This file - CLI development guide
+    ├── cli_agent.py         # Basic CLI implementation
+    ├── config_manager.py    # Configuration management
+    ├── enums.py            # Type definitions and enums
+    ├── interactive_cli.py   # Rich interactive CLI
+    ├── quick_start.py      # Quick demonstration script
+    ├── simple_agent.py     # Core agent implementation
+    ├── simple_parser.py    # Code parsing utilities
+    └── testing/            # Test files directory
+```
+
 ### **Phase 1: Basic CLI - `cli_agent.py`**
 **Focus**: Argparse fundamentals and CLI structure
 
 ```bash
 # Goal: Create a working command-line interface
+cd doc_agent
 python cli_agent.py my_script.py --llm openai --format markdown
 ```
 
@@ -29,6 +49,7 @@ python cli_agent.py my_script.py --llm openai --format markdown
 
 ```bash
 # Goal: Beautiful, interactive CLI with progress bars and colors
+cd doc_agent
 python interactive_cli.py
 ```
 
@@ -72,7 +93,7 @@ ai-doc config --set default_llm anthropic
 4. `get_env_overrides()` - Environment variable integration
 5. `merge_config()` - Configuration precedence resolution
 
-### **Phase 4: Testing - `cli_testing.py`**
+### **Phase 4: Testing - `testing/`**
 **Focus**: Testing strategies for command-line tools
 
 **Key Features:**
@@ -198,47 +219,27 @@ except SpecificError as e:
     sys.exit(1)
 ```
 
-### **Configuration Management**
-```python
-# Multiple configuration sources
-config = merge_configs(
-    defaults=DEFAULT_CONFIG,
-    config_file=load_config_file(),
-    env_vars=get_env_overrides(),
-    cli_args=parse_args()
-)
-```
-
 ## 🚀 Production Deployment
 
 ### **Making Your CLI Installable**
 
 1. **Package Structure**:
 ```
-ai-doc-agent/
-├── src/
-│   └── ai_doc_agent/
-│       ├── __init__.py
-│       ├── cli.py
-│       └── core/
-├── tests/
+ai-agent-learning/
+├── CLAUDE.md
+├── README.md  
+├── requirements.txt
 ├── setup.py
-└── pyproject.toml
-```
-
-2. **Entry Points** (setup.py):
-```python
-entry_points={
-    'console_scripts': [
-        'ai-doc=ai_doc_agent.cli:main',
-    ],
-}
-```
-
-3. **Installation**:
-```bash
-pip install -e .  # Development install
-pip install ai-doc-agent  # Production install
+├── pyproject.toml
+└── doc_agent/
+    ├── __init__.py
+    ├── cli_agent.py
+    ├── interactive_cli.py
+    ├── config_manager.py
+    ├── simple_agent.py
+    ├── simple_parser.py
+    ├── enums.py
+    └── testing/
 ```
 
 ### **Distribution**

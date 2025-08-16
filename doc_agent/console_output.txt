@@ -11,8 +11,10 @@ Available Python files:
 6. cli_testing.py
 7. quick_start.py
 8. interactive_cli.py
-Enter Python file path: Choose LLM [openai/anthropic]:    Choose Documentation   
-          Format          
+Enter Python file path: simple_agent.py
+Choose LLM [openai/anthropic]: openai
+
+Choose Documentation Format          
 ┏━━━━━━━━━━┳━━━━━━━━━━━━━┓
 ┃ Format   ┃ Description ┃
 ┡━━━━━━━━━━╇━━━━━━━━━━━━━┩
@@ -24,7 +26,7 @@ Enter Python file path: Choose LLM [openai/anthropic]:    Choose Documentation
 │ PLAIN    │ plain       │
 │ EPYTEXT  │ epytext     │
 └──────────┴─────────────┘
-Choose Documentation Format [MARKDOWN/RST/NUMPY/GOOGLE/SPHINX/PLAIN/EPYTEXT]: 
+Choose Documentation Format [MARKDOWN/RST/NUMPY/GOOGLE/SPHINX/PLAIN/EPYTEXT]:  RST
 🤖 Starting documentation generation for: simple_agent.py
 ============================================================
 🔍 Analyzing file: simple_agent.py
@@ -155,5 +157,7 @@ Choose Documentation Format [MARKDOWN/RST/NUMPY/GOOGLE/SPHINX/PLAIN/EPYTEXT]:
 │   8     :rtype: dict                                                         │
 │   9     """                                                                  │
 ╰──────────────────────────────────────────────────────────────────────────────╯
-Save results to file? [y/n]: 
+Save results to file? [y/n]: y
+Enter output file path: simple_agent_documentation.txt
+
 🎉 Thanks for using the AI Documentation Generator!
