@@ -12,3 +12,17 @@ class LLMClient(str, Enum):
 
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
+
+
+class DocumentationFormat(str, Enum):
+    """
+    Namespace for documentation formats
+    """
+
+    MARKDOWN: str = "markdown"
+    RST: str = "rst"
+    NUMPY: str = "numpy"
+    GOOGLE: str = "google"
+    SPHINX: str = "sphinx"
+    PLAIN: str = "plain"
+    EPYTEXT: str = "epytext"

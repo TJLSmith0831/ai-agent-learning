@@ -14,12 +14,12 @@ from openai import OpenAI
 from anthropic import Anthropic
 from dotenv import load_dotenv
 from simple_parser import extract_functions, FunctionInfo
-from constants import LLMClient
+from constants import LLMClient, DocumentationFormat
 
 load_dotenv()
 
 
-class SimpleDocumentationAgent:
+class DocumentationAgent:
     """
     Minimal AI agent for generating code documentation
 
@@ -29,7 +29,11 @@ class SimpleDocumentationAgent:
     3. ACT: Generate documentation using LLM
     """
 
-    def __init__(self, llm_client: LLMClient):
+    def __init__(
+        self,
+        llm_client: LLMClient,
+        doc_format: DocumentationFormat = DocumentationFormat.RST,
+    ):
         """
         Initialize the agent
 
@@ -41,8 +45,12 @@ class SimpleDocumentationAgent:
         if llm_client not in LLMClient._value2member_map_:
             raise AgentException("Unsupported LLM client!")
 
+        if doc_format not in DocumentationFormat._value2member_map_:
+            raise AgentException("Unsupported documentation format!")
+
         self.llm_type = llm_client
-        
+        self.doc_format = doc_format
+
         if llm_client == LLMClient.OPENAI:
             self.llm_client = OpenAI(
                 api_key=os.environ.get("OPENAI_API_KEY"),
@@ -83,7 +91,7 @@ class SimpleDocumentationAgent:
             {function.source_code}
 
             Instructions: 
-            - Write in reStructuredText (reST) format
+            - Write in {self.doc_format.value} format
             - Include Args and Returns sections
             - Be specific about what the function does
             - Include a description of the function's purpose
@@ -102,12 +110,6 @@ class SimpleDocumentationAgent:
         """
 
         try:
-            # Check if we have API keys - if not, return mock response
-            if self.llm_type == LLMClient.OPENAI and not os.environ.get("OPENAI_API_KEY"):
-                return "📝 Mock OpenAI response: This is where the generated docstring would appear."
-            elif self.llm_type == LLMClient.ANTHROPIC and not os.environ.get("ANTHROPIC_API_KEY"):
-                return "📝 Mock Anthropic response: This is where the generated docstring would appear."
-            
             # Real LLM calls
             if self.llm_type == LLMClient.OPENAI:
                 response = self.llm_client.chat.completions.create(
@@ -184,7 +186,7 @@ def demo_agent(llm_client: LLMClient):
     print("=" * 50)
 
     # Create agent with no LLM (uses mock responses)
-    agent = SimpleDocumentationAgent(llm_client=llm_client)
+    agent = DocumentationAgent(llm_client=llm_client)
 
     # Document this file
     results = agent.document_file(__file__)

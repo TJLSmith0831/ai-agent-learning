@@ -9,7 +9,7 @@ Run this file at each step to see your progress!
 
 import os
 from simple_parser import extract_functions
-from simple_agent import SimpleDocumentationAgent
+from simple_agent import DocumentationAgent
 from constants import LLMClient
 
 
@@ -73,7 +73,7 @@ def test_step_2_agent():
     print("=" * 40)
 
     # Create agent (no LLM needed for this test)
-    agent = SimpleDocumentationAgent(llm_client=LLMClient.OPENAI)
+    agent = DocumentationAgent(llm_client=LLMClient.OPENAI)
 
     # Test on the quick_start.py file itself
     try:
