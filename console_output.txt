@@ -1,0 +1,159 @@
+╭───────────────────────────────────────────╮
+│ 🤖 Interactive AI Documentation Generator │
+╰───────────────────────────────────────────╯
+==================================================
+Available Python files:
+1. simple_agent.py
+2. enums.py
+3. simple_parser.py
+4. cli_agent.py
+5. config_manager.py
+6. cli_testing.py
+7. quick_start.py
+8. interactive_cli.py
+Enter Python file path: Choose LLM [openai/anthropic]:    Choose Documentation   
+          Format          
+┏━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ Format   ┃ Description ┃
+┡━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│ MARKDOWN │ markdown    │
+│ RST      │ rst         │
+│ NUMPY    │ numpy       │
+│ GOOGLE   │ google      │
+│ SPHINX   │ sphinx      │
+│ PLAIN    │ plain       │
+│ EPYTEXT  │ epytext     │
+└──────────┴─────────────┘
+Choose Documentation Format [MARKDOWN/RST/NUMPY/GOOGLE/SPHINX/PLAIN/EPYTEXT]: 
+🤖 Starting documentation generation for: simple_agent.py
+============================================================
+🔍 Analyzing file: simple_agent.py
+📊 Found 7 functions to document
+
+📝 Documenting function: demo_agent
+💭 Built prompt (2134 characters)
+✅ Generated documentation (222 characters)
+
+📝 Documenting function: __init__
+💭 Built prompt (2702 characters)
+✅ Generated documentation (442 characters)
+
+📝 Documenting function: perceive
+💭 Built prompt (1898 characters)
+✅ Generated documentation (296 characters)
+
+📝 Documenting function: reason
+💭 Built prompt (3245 characters)
+✅ Generated documentation (298 characters)
+
+📝 Documenting function: act
+💭 Built prompt (2565 characters)
+✅ Generated documentation (250 characters)
+
+📝 Documenting function: document_function
+💭 Built prompt (2098 characters)
+✅ Generated documentation (300 characters)
+
+📝 Documenting function: document_file
+💭 Built prompt (2445 characters)
+✅ Generated documentation (301 characters)
+
+🎉 Documentation complete! Generated docs for 7 functions
+                                Results Overview                                
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Function Name     ┃ Arguments                         ┃ Documentation Length ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│ demo_agent        │ ['llm_client']                    │ 222                  │
+│ __init__          │ ['self', 'llm_client',            │ 442                  │
+│                   │ 'doc_format']                     │                      │
+│ perceive          │ ['self', 'file_path']             │ 296                  │
+│ reason            │ ['self', 'function']              │ 298                  │
+│ act               │ ['self', 'prompt']                │ 250                  │
+│ document_function │ ['self', 'function']              │ 300                  │
+│ document_file     │ ['self', 'file_path']             │ 301                  │
+└───────────────────┴───────────────────────────────────┴──────────────────────┘
+╭───────────────────────────────── demo_agent ─────────────────────────────────╮
+│   1 def demo_agent(llm_client: LLMClient):                                   │
+│   2     """                                                                  │
+│   3     Demonstrate the documentation agent capabilities.                    │
+│   4                                                                          │
+│   5     :param llm_client: LLM provider to use for demonstration             │
+│   6     :type llm_client: LLMClient                                          │
+│   7                                                                          │
+│   8     :returns: None                                                       │
+│   9     """                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────── __init__ ──────────────────────────────────╮
+│    1 def __init__(                                                           │
+│    2     self,                                                               │
+│    3     llm_client: LLMClient,                                              │
+│    4     doc_format: DocumentationFormat = DocumentationFormat.RST,          │
+│    5 ):                                                                      │
+│    6     """                                                                 │
+│    7     Initialize the documentation agent.                                 │
+│    8                                                                         │
+│    9     :param llm_client: LLM provider to use for documentation generation │
+│   10     :type llm_client: LLMClient                                         │
+│   11     :param doc_format: Documentation format to generate                 │
+│   12     :type doc_format: DocumentationFormat                               │
+│   13     :raises AgentException: If llm_client or doc_format is invalid      │
+│   14     """                                                                 │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────── perceive ──────────────────────────────────╮
+│   1 def perceive(self, file_path: str) -> List[FunctionInfo]:                │
+│   2     """                                                                  │
+│   3     Extract function information from Python source code.                │
+│   4                                                                          │
+│   5     :param file_path: Path to the Python file to analyze                 │
+│   6     :type file_path: str                                                 │
+│   7     :returns: List of function information objects                       │
+│   8     :rtype: List[FunctionInfo]                                           │
+│   9     """                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────────── reason ───────────────────────────────────╮
+│    1 def reason(self, function: FunctionInfo) -> str:                        │
+│    2     """                                                                 │
+│    3     Build context and generate prompt for LLM documentation generation. │
+│    4                                                                         │
+│    5     :param function: Function information to generate documentation for │
+│    6     :type function: FunctionInfo                                        │
+│    7     :returns: Formatted prompt for LLM                                  │
+│    8     :rtype: str                                                         │
+│    9     """                                                                 │
+│   10                                                                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────── act ─────────────────────────────────────╮
+│   1 def act(self, prompt: str) -> str:                                       │
+│   2     """                                                                  │
+│   3     Generate documentation using the configured LLM.                     │
+│   4                                                                          │
+│   5     :param prompt: Formatted prompt for documentation generation         │
+│   6     :type prompt: str                                                    │
+│   7     :returns: Generated documentation text                               │
+│   8     :rtype: str                                                          │
+│   9     """                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────── document_function ──────────────────────────────╮
+│   1 def document_function(self, function: FunctionInfo) -> str:              │
+│   2     """                                                                  │
+│   3     Generate documentation for a single function using the complete work │
+│   4                                                                          │
+│   5     :param function: Function information to document                    │
+│   6     :type function: FunctionInfo                                         │
+│   7     :returns: Generated documentation text                               │
+│   8     :rtype: str                                                          │
+│   9     """                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────── document_file ────────────────────────────────╮
+│   1 def document_file(self, file_path: str) -> dict:                         │
+│   2     """                                                                  │
+│   3     Generate documentation for all functions in a Python file.           │
+│   4                                                                          │
+│   5     :param file_path: Path to the Python file to document                │
+│   6     :type file_path: str                                                 │
+│   7     :returns: Dictionary mapping function names to documentation results │
+│   8     :rtype: dict                                                         │
+│   9     """                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Save results to file? [y/n]: 
+🎉 Thanks for using the AI Documentation Generator!

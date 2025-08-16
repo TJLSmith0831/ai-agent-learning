@@ -1,11 +1,8 @@
 """
-Simple Code Parser - 2 Hour Learning Version
+Simple Code Parser
 
-This is a dramatically simplified version focused on getting results quickly.
-We'll only extract functions and their basic information - no complex AST visiting.
-
-Learning Goal: Understand how to extract code structure programmatically
-Time: 15-20 minutes to implement the TODOs
+Extracts function information from Python source code using the AST module.
+Focused on function signatures, parameters, and source code extraction.
 """
 
 import ast
@@ -16,7 +13,7 @@ from typing import List, Optional
 @dataclass
 class FunctionInfo:
     """
-    Simple container for function information
+    Container for extracted function information.
     """
 
     name: str
@@ -28,11 +25,14 @@ class FunctionInfo:
 
 def extract_functions(file_path: str) -> List[FunctionInfo]:
     """
-    Extract function information from a Python file
+    Extract function information from a Python file.
 
-    This is the PERCEIVE phase of our agent - gathering information.
-
-    :returns: List of FunctionInfo objects
+    :param file_path: Path to the Python file to parse
+    :type file_path: str
+    :returns: List of function information objects
+    :rtype: List[FunctionInfo]
+    :raises FileNotFoundError: If the specified file does not exist
+    :raises SyntaxError: If the Python file has syntax errors
     """
     try:
         with open(file_path, "r", encoding="utf-8") as f:
@@ -89,7 +89,10 @@ def extract_functions(file_path: str) -> List[FunctionInfo]:
 
 def demo_parser():
     """
-    Test the parser on this very file
+    Demonstrate the parser capabilities on the current file.
+    
+    :returns: None
+    :rtype: None
     """
     print("🔍 Testing Parser on This File")
     print("=" * 40)

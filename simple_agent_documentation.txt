@@ -1,0 +1,81 @@
+# demo_agent
+def demo_agent(llm_client: LLMClient):
+    """
+    Demonstrate the documentation agent capabilities.
+
+    :param llm_client: LLM provider to use for demonstration
+    :type llm_client: LLMClient
+
+    :returns: None
+    """
+
+# __init__
+def __init__(
+    self,
+    llm_client: LLMClient,
+    doc_format: DocumentationFormat = DocumentationFormat.RST,
+):
+    """
+    Initialize the documentation agent.
+
+    :param llm_client: LLM provider to use for documentation generation
+    :type llm_client: LLMClient
+    :param doc_format: Documentation format to generate
+    :type doc_format: DocumentationFormat
+    :raises AgentException: If llm_client or doc_format is invalid
+    """
+
+# perceive
+def perceive(self, file_path: str) -> List[FunctionInfo]:
+    """
+    Extract function information from Python source code.
+
+    :param file_path: Path to the Python file to analyze
+    :type file_path: str
+    :returns: List of function information objects
+    :rtype: List[FunctionInfo]
+    """
+
+# reason
+def reason(self, function: FunctionInfo) -> str:
+    """
+    Build context and generate prompt for LLM documentation generation.
+
+    :param function: Function information to generate documentation for
+    :type function: FunctionInfo
+    :returns: Formatted prompt for LLM
+    :rtype: str
+    """
+
+# act
+def act(self, prompt: str) -> str:
+    """
+    Generate documentation using the configured LLM.
+
+    :param prompt: Formatted prompt for documentation generation
+    :type prompt: str
+    :returns: Generated documentation text
+    :rtype: str
+    """
+
+# document_function
+def document_function(self, function: FunctionInfo) -> str:
+    """
+    Generate documentation for a single function using the complete workflow.
+
+    :param function: Function information to document
+    :type function: FunctionInfo
+    :returns: Generated documentation text
+    :rtype: str
+    """
+
+# document_file
+def document_file(self, file_path: str) -> dict:
+    """
+    Generate documentation for all functions in a Python file.
+
+    :param file_path: Path to the Python file to document
+    :type file_path: str
+    :returns: Dictionary mapping function names to documentation results
+    :rtype: dict
+    """

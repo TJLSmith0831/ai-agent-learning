@@ -1,11 +1,8 @@
 """
-Simple Documentation Agent - 2 Hour Learning Version
+Simple Documentation Agent
 
-This implements the core Perceive → Reason → Act pattern in the simplest way possible.
-Focus on getting a working agent, not perfect code.
-
-Learning Goal: Understand AI agent architecture and LLM integration
-Time: 30-40 minutes to implement the TODOs
+Implements the core Perceive → Reason → Act pattern for automated code documentation.
+Supports multiple LLM providers and documentation formats.
 """
 
 from typing import List
@@ -14,7 +11,7 @@ from openai import OpenAI
 from anthropic import Anthropic
 from dotenv import load_dotenv
 from simple_parser import extract_functions, FunctionInfo
-from constants import LLMClient, DocumentationFormat
+from enums import LLMClient, DocumentationFormat, DocumentationFormatExamples
 
 load_dotenv()
 
@@ -35,9 +32,13 @@ class DocumentationAgent:
         doc_format: DocumentationFormat = DocumentationFormat.RST,
     ):
         """
-        Initialize the agent
+        Initialize the documentation agent.
 
-        llm_client: Your LLM client (OpenAI, Anthropic, etc.)
+        :param llm_client: LLM provider to use for documentation generation
+        :type llm_client: LLMClient
+        :param doc_format: Documentation format to generate
+        :type doc_format: DocumentationFormat
+        :raises AgentException: If llm_client or doc_format is invalid
         """
         if llm_client is None:
             raise AgentException("LLM client not initialized!")
@@ -50,6 +51,7 @@ class DocumentationAgent:
 
         self.llm_type = llm_client
         self.doc_format = doc_format
+        self.doc_format_example = DocumentationFormatExamples[doc_format.name]
 
         if llm_client == LLMClient.OPENAI:
             self.llm_client = OpenAI(
@@ -62,9 +64,12 @@ class DocumentationAgent:
 
     def perceive(self, file_path: str) -> List[FunctionInfo]:
         """
-        PHASE 1: PERCEIVE - Gather information about the code
+        Extract function information from Python source code.
 
-        This is where the agent "sees" what it's working with.
+        :param file_path: Path to the Python file to analyze
+        :type file_path: str
+        :returns: List of function information objects
+        :rtype: List[FunctionInfo]
         """
         print(f"🔍 Analyzing file: {file_path}")
         functions = extract_functions(file_path)
@@ -73,40 +78,54 @@ class DocumentationAgent:
 
     def reason(self, function: FunctionInfo) -> str:
         """
-        PHASE 2: REASON - Build context and prepare for action
+        Build context and generate prompt for LLM documentation generation.
 
-        This is where the agent decides what to do with the information.
-        For documentation, this means building a good prompt.
+        :param function: Function information to generate documentation for
+        :type function: FunctionInfo
+        :returns: Formatted prompt for LLM
+        :rtype: str
         """
-        # Build a prompt for the LLM
-        # Include:
-        # - Clear task description
-        # - The function code
-        # - Instructions for output format
-
         prompt = f"""
-            Task: Write a Python docstring for this function
+        You are a Python docstring generator.
 
-            Function to document:
-            {function.source_code}
+        Goal:
+        Return exactly the function declaration line and its docstring in {self.doc_format.value} 
+        style.
+        Do not include any function body statements. Do not add any text before or after.
+        Do not wrap the output in code fences.
 
-            Instructions: 
-            - Write in {self.doc_format.value} format
-            - Include Args and Returns sections
-            - Be specific about what the function does
-            - Include a description of the function's purpose
-            - Include a description of example usages and where in the codebase it is used
+        Source function (for analysis only; do not copy the body):
+        <<<SOURCE
+        {function.source_code}
+        SOURCE>>>
 
-            Generated docstring:
+        Style guide (authoritative example; follow its sections and syntax exactly):
+        <<<STYLE
+        {self.doc_format_example}
+        STYLE>>>
+
+        Strict output contract:
+        1) Preserve the original declaration EXACTLY (decorators, async, name, parameters, defaults, type hints, return type).
+        2) Immediately follow it with a correctly indented {self.doc_format.value} docstring.
+        3) Docstring must include:
+        - A concise one-line summary.
+        - A parameters section and a returns section formatted per {self.doc_format.value}.
+        4) If there are no parameters or no return value, handle that according to the style in the STYLE block (omit or mark None, as appropriate).
+        5) Do not invent types that are not present or reasonably inferable; prefer what is annotated.
+        6) Any example usage must remain inside the docstring as an Examples section; never emit code outside the docstring.
+        7) Output only the declaration and its docstring—nothing else.
         """
 
         return prompt.strip()
 
     def act(self, prompt: str) -> str:
         """
-        PHASE 3: ACT - Generate the documentation
+        Generate documentation using the configured LLM.
 
-        This is where the agent produces its output.
+        :param prompt: Formatted prompt for documentation generation
+        :type prompt: str
+        :returns: Generated documentation text
+        :rtype: str
         """
 
         try:
@@ -133,7 +152,12 @@ class DocumentationAgent:
 
     def document_function(self, function: FunctionInfo) -> str:
         """
-        Complete workflow: Perceive → Reason → Act for a single function
+        Generate documentation for a single function using the complete workflow.
+
+        :param function: Function information to document
+        :type function: FunctionInfo
+        :returns: Generated documentation text
+        :rtype: str
         """
         print(f"\n📝 Documenting function: {function.name}")
 
@@ -149,9 +173,12 @@ class DocumentationAgent:
 
     def document_file(self, file_path: str) -> dict:
         """
-        Complete workflow: Document all functions in a file
+        Generate documentation for all functions in a Python file.
 
-        This demonstrates the full agent pipeline.
+        :param file_path: Path to the Python file to document
+        :type file_path: str
+        :returns: Dictionary mapping function names to documentation results
+        :rtype: dict
         """
         print(f"\n🤖 Starting documentation generation for: {file_path}")
         print("=" * 60)
@@ -180,7 +207,10 @@ class DocumentationAgent:
 
 def demo_agent(llm_client: LLMClient):
     """
-    Demonstrate the agent on this very file
+    Demonstrate the documentation agent capabilities.
+
+    :param llm_client: LLM provider to use for demonstration
+    :type llm_client: LLMClient
     """
     print("🚀 Simple Documentation Agent Demo")
     print("=" * 50)
@@ -203,7 +233,7 @@ def demo_agent(llm_client: LLMClient):
 
 class AgentException(Exception):
     """
-    Exception for agent errors
+    Custom exception for documentation agent errors.
     """
 
 

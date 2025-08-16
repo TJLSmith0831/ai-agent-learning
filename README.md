@@ -1,58 +1,65 @@
-# AI Agent for Code Documentation - 2 Hour Learning Project
+# AI Agent for Code Documentation
 
-> **⚡ Fast Track Learning**: Build a working AI agent that generates code documentation in just 2 hours! This streamlined version focuses on hands-on implementation with immediate results.
+> **⚡ Production Ready**: A working AI agent that generates code documentation using modern LLMs. Features multiple documentation formats and CLI interfaces.
 
-## What You'll Learn
+## Features
 
-### Core AI Agent Concepts (In 2 Hours!)
-- **Agent Architecture**: Perceive → Reason → Act pattern through direct implementation
-- **AST Parsing**: Extract function information from Python code using built-in tools
-- **LLM Integration**: Connect your agent to OpenAI, Anthropic, or local models
-- **Prompt Engineering**: Write effective prompts that generate useful documentation
+### Core Capabilities
+- **Agent Architecture**: Implements Perceive → Reason → Act pattern for code analysis
+- **AST Parsing**: Extracts function information from Python code using built-in tools
+- **LLM Integration**: Supports OpenAI, Anthropic, and local models
+- **Multiple Formats**: Generate documentation in RST, Markdown, Google, NumPy, and more
 
-### Technical Skills You'll Gain
-- **Python AST Module**: Parse code structure programmatically
-- **API Integration**: Make real LLM calls with proper error handling  
-- **Code Analysis**: Understand how to extract meaningful information from source code
-- **Agent Design Patterns**: Build systems that can perceive, reason, and act
+### Technical Implementation
+- **Python AST Module**: Programmatic code structure parsing
+- **API Integration**: Real LLM calls with proper error handling  
+- **Code Analysis**: Meaningful information extraction from source code
+- **CLI Tools**: Multiple interfaces from basic to interactive
 
 ## Project Structure
 
 ```
 ai-agent-learning/
-├── simple_parser.py   # Step 1: Extract functions from code (20 min)
-├── simple_agent.py    # Step 2: Build the AI agent pipeline (40 min) 
-├── quick_start.py     # Testing & validation at each step
-├── requirements.txt   # Dependencies for LLM integration
-├── CLAUDE.md          # Guide for Claude Code users
-└── README.md          # This file
+├── simple_parser.py    # Function extraction from Python code
+├── simple_agent.py     # AI agent pipeline implementation
+├── quick_start.py      # Testing & validation utilities
+├── requirements.txt    # Dependencies for LLM integration
+├── enums.py           # Type definitions and configuration
+│
+├── CLI Tools:
+├── cli_agent.py        # Basic CLI with argparse
+├── interactive_cli.py  # Rich interactive CLI interface
+├── config_manager.py   # Configuration management
+├── cli_testing.py      # CLI testing utilities
+├── CLI_GUIDE.md        # CLI development guide
+│
+└── README.md           # This file
 ```
 
-## ⚡ 2-Hour Quick Start
+## ⚡ Quick Start
 
-### Step 1: Test Your Setup (5 minutes)
+### Step 1: Test Your Setup
 ```bash
 python quick_start.py
 ```
-This validates your complete working agent!
+Validates your complete working agent.
 
-### Step 2: Understand the Parser (10 minutes)
+### Step 2: Run the Parser
 ```bash
-python simple_parser.py  # See function extraction in action
+python simple_parser.py
 ```
+Demonstrates function extraction from Python code.
 
-### Step 3: Explore the Agent (20 minutes) 
+### Step 3: Run the Agent
 ```bash
-python simple_agent.py  # See complete agent pipeline
+python simple_agent.py
 ```
+Shows the complete agent pipeline in action.
 
-### Step 4: Add Real LLM (30-60 minutes)
+### Step 4: Add LLM Integration
 - Get API key from OpenAI or Anthropic  
 - Set environment variables (`OPENAI_API_KEY` or `ANTHROPIC_API_KEY`)
-- Test with real LLM calls on your own Python files
-
-### Step 5: Celebrate! (5 minutes)
-You now have a working AI agent that can analyze code and generate documentation!
+- Test with real LLM calls on your Python files
 
 ## 💡 Implementation Tips
 
@@ -62,7 +69,7 @@ You now have a working AI agent that can analyze code and generate documentation
 python quick_start.py
 ```
 
-### Key Components to Understand
+### Key Components
 ```python
 # simple_parser.py - Extracts function information:
 func_name = node.name
@@ -72,7 +79,7 @@ docstring = ast.get_docstring(node)
 
 ## 🚨 Common Issues
 
-- **Missing constants.py?** → Create it with `from enum import Enum; class LLMClient(Enum): OPENAI = "openai"; ANTHROPIC = "anthropic"`
+- **Missing enums.py?** → Should contain LLMClient and DocumentationFormat enums
 - **API errors?** → Set environment variables: `export OPENAI_API_KEY=your_key` 
 - **Generic responses?** → Customize prompts in `simple_agent.py` reason() method
 
@@ -109,24 +116,43 @@ return response.content[0].text
 ollama pull codellama
 ```
 
-## 🎯 Success Check
+## 🎯 Status Check
 
-✅ **Project Status: COMPLETE & READY TO USE**
+✅ **Project Status: PRODUCTION READY**
 
-You'll know it's working when:
+Working features:
 - [x] All files exist and run without errors
 - [x] `python quick_start.py` demonstrates working agent pipeline  
 - [x] Parser extracts functions from Python files
-- [x] Agent can generate documentation (with API keys)
+- [x] Agent generates documentation (with API keys)
 
-## 🚀 What's Next?
+## 🚀 Usage
 
-Once your basic agent works, you can expand it:
-- Add class documentation support
-- Process multiple files
-- Connect with VS Code
-- Build other types of code agents (testing, refactoring, etc.)
+### **Core Agent**
+✅ Working AI documentation agent with Perceive → Reason → Act pattern
+
+### **CLI Tools**
+Command-line interfaces for different use cases:
+
+1. **Basic CLI** (`cli_agent.py`)
+   - Argument parsing with argparse
+   - Input validation and error handling
+   - File I/O and output formatting
+
+2. **Interactive CLI** (`interactive_cli.py`)
+   - Rich text output with colors and formatting
+   - Progress bars and user prompts
+   - Professional CLI appearance
+
+**📖 Complete Guide**: See [`CLI_GUIDE.md`](CLI_GUIDE.md) for detailed documentation
+
+### **Extension Possibilities**
+- Multi-language support (JavaScript, TypeScript, etc.)
+- VS Code extension integration
+- Documentation site generation
+- CI/CD pipeline integration
 
 ---
 
-🚀 **Ready to build? Run**: `python quick_start.py`
+🚀 **Get started**: `python quick_start.py`  
+📋 **CLI documentation**: [`CLI_GUIDE.md`](CLI_GUIDE.md)

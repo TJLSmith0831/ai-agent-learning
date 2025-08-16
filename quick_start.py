@@ -10,7 +10,7 @@ Run this file at each step to see your progress!
 import os
 from simple_parser import extract_functions
 from simple_agent import DocumentationAgent
-from constants import LLMClient
+from enums import LLMClient
 
 
 def test_step_1_parser():

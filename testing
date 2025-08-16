@@ -1,0 +1,231 @@
+# main
+"""
+Entry point for interactive CLI
+
+Purpose:
+This function serves as the entry point for an interactive Command Line Interface (CLI) application. It initializes an instance of InteractiveCLI and runs the CLI.
+
+Example Usages:
+- When running the application from the command line
+- When launching the interactive CLI for exploring and learning different features of the application
+
+Args:
+    None
+
+Returns:
+    None
+
+This function demonstrates different CLI patterns for different use cases:
+- Interactive: Better for exploration and learning
+- Command-line args: Better for automation and scripting
+"""
+
+# __init__
+"""
+Initialize a rich Console and set up color definitions for different message types. 
+
+Parameters:
+    None
+
+Returns:
+    None
+
+This function sets up a rich Console object and defines color mappings for different message types such as success, error, warning, info, and accent. It also initializes the agent attribute to None. This function is typically called at the beginning of a script or program to set up the console for displaying formatted messages.
+
+Example:
+    An example usage of this function can be found in a Python script that requires rich output formatting, such as a command-line tool or an interactive application.
+"""
+
+# print_banner
+def print_banner(self) -> None:
+        """
+        Show a welcoming banner to the user.
+
+        This function creates a rich Panel with the text "🤖 Interactive AI Documentation Generator"
+        and displays it in the console along with a line of equals signs.
+        
+        Args:
+            self: The object instance
+        
+        Returns:
+            None
+
+        Example usage:
+        - Used when the program starts to provide a visually appealing and informative welcome message to the user.
+        
+        - In the codebase, this function is typically called at the beginning of the program execution to display the banner.
+        """
+        
+
+# get_file_path
+```
+        Function to document:
+            def get_file_path(self) -> Path:
+    """
+    Interactively get file path from user
+
+    :return: Path to the file to process
+    :rtype: Path
+
+    Args:
+        self: Instance of the class
+
+    Returns:
+        Path: Path to the file to process
+
+    This method interacts with the user to get a file path for a Python file for processing. It displays a list of available Python files in the directory and prompts the user to enter a valid file path. It validates the file path to ensure it exists and has a ".py" extension before returning it.
+
+    Example Usages:
+    - Used in a command-line interface application to enable users to specify a Python file to process.
+    - Used in a data processing pipeline to allow users to input a Python file containing data processing logic.
+
+    :return: Path to the file to process
+    """
+```
+
+# choose_llm_provider
+"""
+Function to let user choose LLM provider interactively and check API key availability.
+
+Args:
+    self: The object instance
+          
+Returns:
+    LLMClient: An instance of the LLMClient that the user chooses through an interactive prompt.
+
+Description:
+    This function prompts the user to choose a Long Language Model (LLM) provider from a list of choices. It then checks the availability of the API key for the chosen provider and warns the user if the key is not found in the environment variables.
+
+Example Usage:
+    This function can be used when setting up a workflow that requires the user to select an LLM provider before proceeding with a specific task in a codebase. It ensures that the necessary API key is available before using the chosen provider for language processing tasks.
+"""
+
+# choose_doc_format
+"""
+Function to let the user choose a documentation format.
+
+:return: DocumentationFormat enum value representing the chosen documentation format
+
+Description:
+This function presents the user with a selection of documentation formats using a rich Table display.
+It prompts the user to choose a format from the available options using a Prompt with enum choices.
+The selected documentation format is returned as a DocumentationFormat enum value.
+
+Example usage:
+doc_format = choose_doc_format()
+
+This function is used in the codebase to allow users to specify the desired format for generating documentation.
+"""
+
+# setup_agent
+"""
+Function to initialize an agent with progress indication while setting up an AI agent with a specified LLM client and documentation format.
+
+Args:
+    llm_client (LLMClient): The LLM client to use for setup.
+    doc_format (DocumentationFormat): The documentation format to be used.
+
+Returns:
+    DocumentationAgent: An instance of the DocumentationAgent class initialized with the provided LLM client and documentation format.
+
+Description:
+    This function initializes an agent with progress indication by using rich Progress or Spinner during the setup process. It creates a task to set up the AI agent with a progress indicator. If successful, it returns an instance of the DocumentationAgent class initialized with the specified LLM client and documentation format. If an exception occurs during the initialization process, an error message is printed, and None is returned.
+
+Example:
+    agent = setup_agent(llm_client, doc_format)
+    
+Usage:
+    This function is used in the codebase to set up an agent with progress indication when initializing an AI agent with a specific LLM client and documentation format.
+"""
+
+# process_file_with_progress
+"""
+process_file_with_progress(self, file_path: Path) -> Optional[dict]:
+
+Process a file with a rich progress bar to provide feedback on long-running operations.
+
+Args:
+    file_path (Path): The path to the file to be processed.
+
+Returns:
+    Optional[dict]: A dictionary containing the results of processing the file, or None if an exception occurs.
+
+Purpose:
+    This function is used to process a file using a rich progress bar to show progress. It updates the progress 
+    bar as it processes the file and returns the results of the processing.
+
+Example Usage:
+    agent = FileProcessor()
+    file_path = Path("./data/file.txt")
+    results = agent.process_file_with_progress(file_path)
+
+This function is typically used in scenarios where processing a file may take some time and progress feedback is needed.
+"""
+
+# display_results
+def display_results(self, results: dict) -> None:
+    """
+    Display results with rich formatting
+
+    :param results: Documentation results
+    """
+
+# save_results_interactively
+    Interactive file saving with options
+
+    :param results: Documentation results
+
+    Instructions: 
+    - Write in rst format
+    - Include Args and Returns sections
+    - Be specific about what the function does
+    - Include a description of the function's purpose
+    - Include a description of example usages and where in the codebase it is used
+
+# handle_batch_mode
+"""
+        Process multiple files in batch mode using a CLI tool.
+
+        Learning Point: Batch operations in CLI tools
+
+        Args:
+            self: The current instance of the class.
+        
+        Returns:
+            None
+
+        Description:
+            This function allows the user to process multiple files by selecting a file path, choosing an LLC provider, and choosing a document format. It then initializes an agent and processes the selected file with progress. After processing the file, it displays the results and saves them interactively.
+
+        Example Usages:
+            - Used in a command-line interface (CLI) tool for batch processing files.
+            - Can be called when the user wants to process multiple files simultaneously.
+
+        Codebase Location:
+            This function is located in a class that handles batch operations for processing files.
+"""
+
+# run
+```
+        def run(self):
+            """
+            Main interactive loop
+
+            Learning Point: Interactive application flow design
+
+            This function is the main method that runs an interactive loop for an AI Documentation Generator application. It prompts the user for inputs such as file path, LLM provider, and document format, initializes an agent, processes the input file, displays results, and allows the user to save results interactively. In case of any exceptions, it gracefully handles errors and prints an error message.
+
+            Args:
+                self: An instance of the class containing the run method
+
+            Returns:
+                None
+
+            Example Usage:
+                The run method is called in the main entry point of the application to interactively generate documentation based on input data. It is used in the interactive mode of the AI Documentation Generator application.
+
+            Location in codebase:
+                This function is part of a class that implements the logic for running an AI Documentation Generator. It is typically found in a module responsible for handling user interactions and generating documentation.
+            """
+```
+
